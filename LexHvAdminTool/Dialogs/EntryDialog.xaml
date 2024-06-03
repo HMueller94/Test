@@ -1,0 +1,28 @@
+﻿<Window x:Class="LexHvAdminTool.Dialogs.EntryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LexHvAdminTool.Dialogs"
+        mc:Ignorable="d"
+        Title="EntryDialog" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10">
+            <TextBox x:Name="TitleTextBox" Text="Title" Margin="5"/>
+            <TextBox x:Name="UrlTextBox" Text="Url" Margin="5"/>
+            <TextBox x:Name="InformationTextBox" Text="Information" Margin="5"/>
+            <TextBox x:Name="ImageURLTextBox" Text="Image URL" Margin="5"/>
+            <CheckBox x:Name="CreateCalenderEventCheckBox" Content="Create Calendar Event" Margin="5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="OK" Click="OkButton_Click" Margin="5"/>
+            <Button Content="Cancel" Click="CancelButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

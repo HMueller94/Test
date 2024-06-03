@@ -1,0 +1,49 @@
+﻿<Window x:Class="LexHvAdminTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LexHvAdminTool" xmlns:local1="clr-namespace:LexHvAdminTool.Helper.Converter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local1:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="FaqListBox" 
+                  AllowDrop="True" 
+                  PreviewMouseLeftButtonDown="FaqListBox_PreviewMouseLeftButtonDown"
+                  Drop="FaqListBox_Drop" DragOver="FaqListBox_DragOver"
+                  SelectionChanged="FaqListBox_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="FaqId" DisplayMemberBinding="{Binding FaqId}" Width="100"/>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="400"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="10">
+            <Button Content="New File" Click="NewFileButton_Click" Margin="5"/>
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Edit" Click="EditButton_Click" Margin="5" IsEnabled="{Binding ElementName=FaqListBox, Path=SelectedItem, Converter={StaticResource NullToBooleanConverter}}"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5" IsEnabled="{Binding ElementName=FaqListBox, Path=SelectedItem, Converter={StaticResource NullToBooleanConverter}}"/>
+            <Button Content="Import" Click="ImportButton_Click" Margin="5"/>
+            <Button Content="Export" Click="ExportButton_Click" Margin="5"/>
+            <Button Content="Save" Click="SaveButton_Click" Margin="5" IsEnabled="{Binding ElementName=FaqListBox, Path=HasItems}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Last Modified:" Margin="5"/>
+            <TextBlock x:Name="LastModifiedTextBlock" Margin="5"/>
+            <TextBlock Text="Modified By:" Margin="5"/>
+            <TextBlock x:Name="ModifiedByTextBlock" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
